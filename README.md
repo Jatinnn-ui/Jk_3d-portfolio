@@ -2,6 +2,11 @@
 
 An explorable, handcrafted low-poly portfolio: the island is the navigation, not a decorative background. A build-free static website using modular JavaScript and Three.js 0.170.0. React and a bundler are intentionally unnecessary for this small, imperative 3D experience.
 
+## Screenshot
+
+![Portfolio Preview](assets/screenshot.png)
+
+
 ## Implemented features
 
 - Procedural faceted floating island with eight meaningful destinations:
