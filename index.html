@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080d11"><meta name="description" content="Explore the world of Jatin Kashyap — AI Full Stack Developer building AI-powered products and interactive web experiences.">
+  <title>Jatin Kashyap — A world of possibilities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;700&family=Manrope:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#world-menu">Skip to portfolio navigation</a>
+  <div id="scene" aria-label="Interactive miniature portfolio world"></div>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="identity" href="./" aria-label="Jatin Kashyap, world home"><span class="monogram">jk<span>.</span></span><span class="identity-copy">JATIN KASHYAP<small>AI FULL STACK DEVELOPER</small></span></a>
+    <div class="header-right"><span class="availability"><i></i> Open to opportunities</span><button id="motion-toggle" class="icon-button" aria-label="Pause environmental motion" title="Pause environmental motion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6v12M15 6v12"/></svg></button><button id="menu-toggle" class="icon-button" aria-label="Open world navigation" aria-expanded="false" aria-controls="world-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M9 16h11"/></svg></button></div>
+  </header>
+  <main id="portfolio">
+    <section class="world-intro" id="world-intro"><p class="eyebrow"><span></span> A PORTFOLIO, REIMAGINED</p><h1>A small world.<br><span>Endless possibilities.</span></h1><p class="intro-description">I’m Jatin. I build AI-powered products<br>and interactive web experiences.</p><button class="text-link" data-location="about">A little about me <span>↗</span></button></section>
+    <div id="location-labels" aria-label="World landmarks"></div>
+    <p id="scene-status" role="status">Assembling a small universe<span class="loading-dots">...</span></p>
+    <div id="hover-label" aria-hidden="true"></div>
+    <section id="content-panel" aria-labelledby="panel-title" hidden><header class="panel-header"><span id="panel-coordinate" class="eyebrow"></span><button id="close-panel" class="icon-button" aria-label="Close location and return to world">×</button></header><div id="panel-body"></div><footer class="panel-footer"><button id="return-world">↖ <span>Return to world</span></button><span>ESC</span></footer></section>
+    <nav id="world-menu" aria-label="Portfolio locations" hidden><div class="menu-heading"><span class="eyebrow">CHOOSE YOUR DESTINATION</span><span>08 LOCATIONS</span></div><div id="menu-locations"></div><p>Every place has a story. Find yours.</p></nav>
+    <section id="fallback" hidden aria-label="Accessible portfolio"><p class="eyebrow">THE EXPLORER’S EDITION</p><h2>Same ideas.<br>A lighter journey.</h2><p id="fallback-message">Explore all eight chapters below.</p><div id="fallback-locations"></div></section>
+  </main>
+  <footer class="world-hud"><div class="hud-left"><button id="world-index" aria-controls="world-menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>World index</span><span class="keycap">M</span></button><span class="world-version">VOL. 01 / 2026</span></div><div class="explore-prompt"><span id="current-location">EXPLORE THE WORLD</span><p><span class="desktop-hint">Drag to orbit <b>·</b> </span>Click a location to discover</p><span class="prompt-line"></span></div><div class="map-container"><svg id="minimap" viewBox="0 0 116 82" aria-label="World minimap"><path d="m16 39 17-22 39-5 27 22-10 27-40 9-30-13Z" fill="rgba(136,175,182,.025)" stroke="#5c7378" stroke-width=".6"/><path d="m23 43 26-22 40 14-36 23Z" fill="none" stroke="#33454b" stroke-width=".5"/><g id="map-dots"></g><path id="camera-indicator" d="m0-3 2.5 5-5 0Z" fill="#d7e9e6"/></svg><span><i></i> <span id="map-location">WORLD VIEW</span></span></div></footer>
+  <div class="bottom-rule" aria-hidden="true"></div>
+  <script type="module" src="src/main.js"></script>
+  <script nomodule>document.getElementById('scene-status').textContent='Please use a modern browser to explore this portfolio.';</script>
+</body>
+</html>
