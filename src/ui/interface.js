@@ -5,7 +5,7 @@ const safeLink=(url)=>{try{const u=new URL(url,location.href);return ['https:','
 const link=(url,title)=>url&&safeLink(url)?`<a href="${esc(safeLink(url))}" ${String(url).startsWith('mailto:')?'':'target="_blank" rel="noopener noreferrer"'}>${title} ↗</a>`:'';
 export function createInterface(){
   const labels=document.getElementById('location-labels'),menu=document.getElementById('world-menu'),panel=document.getElementById('content-panel'),body=document.getElementById('panel-body');
-  let active=null,activeProject=null,returnFocus=null,isFallback=false,onNavigate=()=>{},onHome=()=>{},onMotion=()=>{},onFallback=()=>{};
+  let active=null,activeProject=null,returnFocus=null,isFallback=false,onNavigate=()=>{},onHome=()=>{},onMotion=()=>{},onFallback=()=>{},journeyRequest=null;
   let reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const number=id=>String(locations.findIndex(l=>l.id===id)+1).padStart(2,'0');
   const buttons=locations.map((l,i)=>`<button data-location="${l.id}"><span>${String(i+1).padStart(2,'0')}</span><span>${l.category}<small>${l.name}</small></span><span>↗</span></button>`).join('');
@@ -29,7 +29,8 @@ export function createInterface(){
       case 'lab':return `<p class="panel-kicker">A little off the map</p><h2 id="panel-title">Not finished.<br>Just getting interesting.</h2><p>Exploratory directions, not finished products.</p>${experiments.map(e=>`<article class="detail-block"><span class="date">${e.status.toUpperCase()}</span><h3>${e.name}</h3><p>${e.description}</p>${tags(e.technologies)}</article>`).join('')}`;
     }
   }
-  function navigate(id,projectId,{hash=true,focus=true}={}){
+  function navigate(id,projectId,{hash=true,focus=true,detail=false}={}){
+    if(journeyRequest&&!isFallback&&!detail){toggleMenu(false);journeyRequest(id,projectId);return;}
     const loc=locations.find(l=>l.id===id);if(!loc)return;
     if(panel.hidden)returnFocus=document.activeElement;
     active=id;activeProject=id==='projects'?(projectId||projects[0].id):null;toggleMenu(false);
@@ -42,7 +43,8 @@ export function createInterface(){
     onNavigate(loc,projects.find(p=>p.id===activeProject));
     if(focus){const title=document.getElementById('panel-title');title.tabIndex=-1;title.focus({preventScroll:true});}
   }
-  function close({hash=true}={}){if(panel.hidden)return;panel.hidden=true;document.body.classList.remove('panel-open');labels.inert=false;document.getElementById('world-intro').inert=false;active=null;activeProject=null;document.getElementById('current-location').textContent='EXPLORE THE WORLD';document.getElementById('map-location').textContent='WORLD VIEW';document.querySelectorAll('[data-map]').forEach(el=>{el.setAttribute('fill','#72908e');el.setAttribute('r','1.6');});if(hash)history.replaceState(null,'',location.pathname+location.search);onHome();if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});}
+  function dismiss(){panel.hidden=true;document.body.classList.remove('panel-open');labels.inert=false;document.getElementById('world-intro').inert=false;active=null;activeProject=null;}
+  function close({hash=true}={}){dismiss();document.getElementById('current-location').textContent='SCROLL TO EXPLORE';document.getElementById('map-location').textContent='WORLD VIEW';document.querySelectorAll('[data-map]').forEach(el=>{el.setAttribute('fill','#72908e');el.setAttribute('r','1.6');});if(hash)history.replaceState(null,'',location.pathname+location.search);onHome();if(returnFocus?.isConnected&&returnFocus.offsetParent!==null)returnFocus.focus({preventScroll:true});}
   document.addEventListener('click',e=>{const destination=e.target.closest('[data-location]');if(destination){navigate(destination.dataset.location);return;}const project=e.target.closest('[data-project]');if(project){navigate('projects',project.dataset.project,{focus:false});body.querySelector(`[data-project="${project.dataset.project}"]`)?.focus();return;}if(!menu.hidden&&!menu.contains(e.target)&&!e.target.closest('#menu-toggle,#world-index'))toggleMenu(false);});
   document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleMenu(true);});
   document.getElementById('menu-toggle').addEventListener('click',()=>toggleMenu());document.getElementById('world-index').addEventListener('click',()=>toggleMenu());
@@ -55,5 +57,5 @@ export function createInterface(){
   simpleButton.addEventListener('click',()=>fallback());
   function route(){const [id,project]=location.hash.slice(1).split('/');if(locations.some(l=>l.id===id))navigate(id,project,{hash:false});else close({hash:false});}
   window.addEventListener('hashchange',route);
-  return {navigate,close,fallback,route,get reduced(){return reduced;},get active(){return active;},get isFallback(){return isFallback;},onNavigate(fn){onNavigate=fn;},onHome(fn){onHome=fn;},onMotion(fn){onMotion=fn;},onFallback(fn){onFallback=fn;},labels:[...labels.children]};
+  return {navigate,close,dismiss,fallback,route,openDetails(id,project){navigate(id,project,{detail:true});},attachJourney(fn){journeyRequest=fn;},get reduced(){return reduced;},get active(){return active;},get isFallback(){return isFallback;},onNavigate(fn){onNavigate=fn;},onHome(fn){onHome=fn;},onMotion(fn){onMotion=fn;},onFallback(fn){onFallback=fn;},labels:[...labels.children]};
 }

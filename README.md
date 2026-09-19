@@ -1,192 +1,113 @@
-<div align="center">
+# Jatin Kashyap — A Small World
 
-# 🌍 Jatin Kashyap — A Small World
+An explorable, handcrafted low-poly portfolio: the island is the navigation, not a decorative background. A build-free static website using modular JavaScript and Three.js 0.170.0. React and a bundler are intentionally unnecessary for this small, imperative 3D experience.
 
-### *An explorable low-poly 3D portfolio island — navigate the world to discover everything about me.*
+## Implemented features
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-jk--3d--portfolio.deploylane.online-0a0a0a?style=for-the-badge&logo=googlechrome&logoColor=white)](https://jk-3d-portfolio.deploylane.online/)
-[![Three.js](https://img.shields.io/badge/Three.js-0.170.0-000000?style=for-the-badge&logo=threedotjs&logoColor=white)](https://threejs.org/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![WebGL](https://img.shields.io/badge/WebGL-Powered-990000?style=for-the-badge&logo=webgl&logoColor=white)](https://www.khronos.org/webgl/)
-[![No Build Step](https://img.shields.io/badge/Build_Step-None-00C853?style=for-the-badge)](https://jk-3d-portfolio.deploylane.online/)
+- Procedural faceted floating island with eight meaningful destinations:
+  - **Observatory / About:** stepped circular architecture, glazed drum, dome, rotating antenna and restrained beacon; exact supplied profile content.
+  - **District / Projects:** four individually selectable buildings for MAYA AI, FORGE AI, CHESS AI and PIXELFORGE; project tabs, descriptions, capabilities and technology stacks.
+  - **River / Experience:** continuous curved water ribbon, chronological docks and the supplied education / independent development journey.
+  - **Summits / Skills:** five angular mountains; capability descriptions and tool groups, without invented percentages.
+  - **Falls / Highlights:** two cliff waterfalls; supplied degree and product-development highlights.
+  - **Grove / Personal:** instanced trees, path, bench and creative / personal interests.
+  - **Bridges / Contact:** physical connection structures, Gurugram location and availability.
+  - **Outer Islands / Lab:** satellite islands with clearly labeled experimental directions.
+- Smooth eased camera travel to every destination and back, subtle world-view orbit, pointer drag and controlled zoom.
+- Real accessible HTML landmark buttons projected from 3D positions, plus raycast selection of architecture.
+- Subtle hover scale and illumination; selected landmarks brighten.
+- Compact translucent content panels; phone bottom sheets with a separately adjusted camera framing.
+- Minimal world index, keyboard navigation, focus states, `M` menu shortcut, Escape to close, a working skip link and reduced-motion support / manual toggle.
+- Small minimap with active landmark and camera heading.
+- Animated water highlights, waterfall droplets, antenna, a city traffic light and a rare shooting star; the star field stays stationary.
+- No image/model asset downloads. Geometry is authored procedurally, merged by material; trees and debris are instanced.
+- Capped device pixel ratio, lower mobile complexity, no postprocessing, one desktop shadow-casting directional light, adaptive resolution/shadow/particle degradation and hidden-tab work suspension.
+- WebGL initialization and context-loss fallback; optional lightweight portfolio in the World index. All eight content sections work without the graphics module.
+- Structured content in `src/data/portfolio.js`; no fake employment, metrics, awards, or certification claims. Missing destination URLs do not render as broken buttons.
 
-</div>
+## Entry URLs / routes
 
----
+| Path | Purpose |
+| --- | --- |
+| `/` or `/index.html` | Cinematic world overview |
+| `/#about` | Observatory and profile |
+| `/#projects/maya` | MAYA AI |
+| `/#projects/forge` | FORGE AI |
+| `/#projects/chess` | CHESS AI |
+| `/#projects/pixelforge` | PIXELFORGE |
+| `/#experience` | Education and independent development timeline |
+| `/#skills` | Five capability groups |
+| `/#achievements` | Credible highlights |
+| `/#personal` | Creative interests and current exploration |
+| `/#contact` | Location, availability and configured contact links |
+| `/#lab` | Clearly marked experiments |
+| `/qa.html` | Opt-in functional test runner; redirects to the actual application |
+| `/qa-about.html` | Run tests and inspect the real About panel at the current viewport |
+| `/qa-fallback.html` | Run tests including the lightweight fallback and leave About open |
+| `/index.html?selftest=1` | Run checks on the real UI, camera, route and scene budgets |
+| `/index.html?selftest=1&inspect=about` | Run checks, then leave the About panel open for visual inspection |
+| `/index.html?selftest=1&fallback=1` | Exercise lightweight fallback after functional checks |
 
-## 📸 Preview
+Routes use URL fragments; no server rewrite configuration is required. There are no API endpoints. There is no hosted production URL yet; publishing has not been performed.
 
-![Portfolio Preview](assets/screenshot.png)
+## Structure
 
-> **Drag to orbit · Click a location to explore · Press `M` for the world index**
-
----
-
-## ✨ What is this?
-
-This is not your average portfolio. It's a **handcrafted 3D floating island** where each section of the island *is* the navigation. No menus, no scrolling — just an explorable world.
-
-Built entirely with **vanilla JavaScript + Three.js**. No React. No bundler. No build step. Just pure, performant 3D on the web.
-
----
-
-## 🗺️ Explore the World
-
-| 📍 Location | 🏛️ What's There |
-|---|---|
-| 🔭 **Observatory** | About me — who I am, what I do |
-| 🏙️ **District** | Projects — MAYA AI, FORGE AI, CHESS AI, PIXELFORGE |
-| 🌊 **River** | Experience — education & dev journey timeline |
-| 🏔️ **Summits** | Skills — 5 capability groups & tech stacks |
-| 💧 **Falls** | Highlights — degree & product-dev achievements |
-| 🌳 **Grove** | Personal — creative interests & explorations |
-| 🌉 **Bridges** | Contact — location, availability, links |
-| 🛸 **Outer Islands** | The Lab — experimental directions |
-
----
-
-## 🚀 Features
-
-- 🏝️ **Procedural island** — fully authored geometry, no external 3D model files
-- 🎥 **Smooth camera travel** — eased transitions between every destination
-- 🖱️ **Drag orbit + zoom** — full pointer & touch control
-- 🏷️ **3D-projected HTML labels** — real accessible buttons in 3D space
-- 📱 **Responsive** — mobile bottom sheets, adjusted camera framing
-- 🗺️ **Live minimap** — shows active landmark + camera heading
-- ⭐ **Animated effects** — water, waterfalls, shooting stars, traffic light, antenna
-- ♿ **Accessible** — keyboard navigation, focus states, reduced-motion support
-- ⚡ **Performance-first** — adaptive quality, instanced geometry, no postprocessing
-- 🛡️ **WebGL fallback** — full lightweight HTML fallback if WebGL fails
-
----
-
-## 🔗 Routes
-
-| URL | Destination |
-|---|---|
-| `/` | 🌍 World overview |
-| `/#about` | 🔭 Observatory — About |
-| `/#projects/maya` | 🤖 MAYA AI |
-| `/#projects/forge` | 🔨 FORGE AI |
-| `/#projects/chess` | ♟️ CHESS AI |
-| `/#projects/pixelforge` | 🎨 PIXELFORGE |
-| `/#experience` | 📅 Timeline |
-| `/#skills` | 🛠️ Skills |
-| `/#achievements` | 🏆 Highlights |
-| `/#personal` | 🌳 Personal |
-| `/#contact` | 📬 Contact |
-| `/#lab` | 🛸 The Lab |
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| **Three.js 0.170.0** | 3D rendering engine |
-| **WebGL** | GPU-accelerated graphics |
-| **Vanilla JS (ES Modules)** | Zero-dependency logic |
-| **OrbitControls** | Camera interaction |
-| **Google Fonts** | DM Sans + Manrope typography |
-| **jsDelivr CDN** | Module delivery (pinned) |
-
----
-
-## 📁 Project Structure
-
-```
-📦 Jk_3d-portfolio
- ├── 📄 index.html              # Entry point
- ├── 🎨 css/style.css           # All styles
- ├── 📁 src/
- │   ├── 🚀 main.js             # UI bootstrap & WebGL fallback
- │   ├── 📁 data/
- │   │   └── portfolio.js       # All content — projects, skills, timeline
- │   ├── 📁 world/
- │   │   ├── build-world.js     # Procedural geometry, instancing, effects
- │   │   ├── materials.js       # Reusable material palette
- │   │   └── renderer.js        # Rendering, raycasting, labels, quality
- │   ├── 📁 camera/
- │   │   └── navigation.js      # Camera travel & OrbitControls
- │   ├── 📁 ui/
- │   │   └── interface.js       # Panels, navigation, deep links, fallback
- │   └── 📁 tests/
- │       ├── checks.js          # Opt-in browser assertions
- │       └── launch.js          # Test entry redirect
- ├── 📄 qa.html                 # Functional test runner
- └── 🖼️ assets/screenshot.png   # Portfolio preview
+```text
+index.html
+css/style.css
+src/
+  main.js                   Independent UI bootstrap and graphics fallback
+  data/portfolio.js         Profile, project, timeline, skills and location data
+  world/
+    materials.js            Reusable material palette
+    build-world.js          Procedural geometry, batching, instancing and effects
+    renderer.js             Rendering, raycasting, labels and adaptive quality
+  camera/navigation.js      Camera travel and OrbitControls
+  ui/interface.js           Semantic panels, navigation, deep links and fallback
+  tests/checks.js            Opt-in browser assertions
+  tests/launch.js            Redirect test entry to the actual application
+qa.html
+qa-about.html
+qa-fallback.html
 ```
 
----
+## Content, models and storage
 
-## ⚡ Run Locally
+All content is static, versioned with the site. No tables, backend, Cloudflare D1 database, local-storage records or user-data collection are needed. Project and location objects are separate from scene code.
 
-No install. No build. Just serve and go.
+- Location: `id`, `name`, `category`, `position`, `cameraPosition`, `cameraTarget`, `labelOffset`, `description`, `content`, `interactions`, optional `secondary`.
+- Project: `id`, `name`, `subtitle`, `description`, `functionality`, `technologies`, `status`, `demoUrl`, `githubUrl`, `featured`, `buildingPosition`.
+- Profile: identity, role, statement, bio, location, availability, email and professional links.
+- Timeline, skills, achievements and experiments are concise structured arrays.
 
-```bash
-# Using Python
-python -m http.server 8080
+External services: pinned Three.js modules and OrbitControls from jsDelivr; DM Sans and Manrope from Google Fonts, with local system fallbacks. No secrets, protected APIs or AI-service calls. The AI products are portfolio descriptions, not services implemented inside this site.
 
-# Using Node.js
-npx serve .
+## Owner input still required / not yet implemented
 
-# Using VS Code
-# Install "Live Server" extension → Right-click index.html → Open with Live Server
-```
+1. Set `profile.email`, `profile.github`, `profile.linkedin` and `profile.resume` to real destinations. Until then, contact shows a clear unpublished-details note rather than invented contact information.
+2. Supply each project's real `demoUrl` and `githubUrl`; unavailable actions are intentionally hidden.
+3. Confirm deployment / maintenance status before labeling any project “Live” or “Maintained.” Current data only calls them featured projects.
+4. Confirm any certificates before adding them. Unverified Google badges and awards were not added.
+5. Review experimental directions against actual work. They are explicitly not represented as finished products.
+6. No contact form delivery, CMS, backend authentication, analytics, audio, heavy bloom, physics or third-party 3D models are included.
+7. No manual device-lab GPU benchmarking or full automated cross-browser interaction suite has been performed. Browser-render smoke tests do not establish 60 FPS on every physical device.
+8. JavaScript is required for the portfolio UI; the graceful fallback is for unavailable WebGL, not browsers with all scripting disabled.
 
-> ⚠️ Don't open `index.html` via `file://` — ES modules require an HTTP origin.
+## Development and verification
 
-Then open → **http://localhost:8080**
+Serve the folder over HTTP with any static file server. Do not open `index.html` with `file://`: browser ES modules need an HTTP origin. No compilation, package install or build step is required.
 
----
+Use `/qa.html` to run actual DOM-button navigation through every section, all four project tabs, Escape, motion toggles, camera travel and return, overflow checks and initial scene budgets. Success/failure is logged to the browser console and reflected in `body[data-tests]`. Tests are opt-in, not executed for normal visitors.
 
-## 🧪 Testing
+### Verification results
 
-```bash
-# Run full functional test suite in browser
-/qa.html
+- **43 functional assertions passed, 0 failed** in the browser, including the optional lightweight fallback check. The standard world-only suite contains 42 assertions.
+- Visually verified the world overview on **1280×800 desktop** and **390×844 mobile** viewports.
+- Visually verified the About destination on desktop and mobile: compact panel / bottom sheet, readable content and actions, with the observatory still visible.
+- Visually verified the lightweight fallback with an open, readable About panel.
+- Fixed an initial-frame negative time delta that could invalidate river animation sampling, and contained projected-label overflow that initially disrupted the mobile viewport.
+- No application JavaScript errors were reported in the final functional run. The headless environment reported software-WebGL / GPU-readback warnings, which are not hardware performance measurements.
 
-# Run checks on live UI
-/index.html?selftest=1
+The scene measured **88 draw calls / 15,390 triangles** during initial rendering. The rare shooting-star line adds a draw call only when visible. These are complexity measurements, not real-device frame-rate guarantees.
 
-# Run checks + leave About panel open for inspection
-/index.html?selftest=1&inspect=about
-
-# Run checks + exercise fallback mode
-/index.html?selftest=1&fallback=1
-```
-
-Results are logged to the browser console and reflected in `body[data-tests]`.
-
----
-
-## 📊 Performance
-
-| Metric | Value |
-|---|---|
-| Draw calls (initial desktop) | ~88 |
-| Triangle count | ~15,400 |
-| External asset downloads | 0 (geometry is procedural) |
-| Build step | None |
-| Dependencies | Three.js + OrbitControls (CDN) |
-
----
-
-## 👨‍💻 About Me
-
-**Jatin Kashyap** — AI Full Stack Developer based in Gurugram, India.
-
-I build AI-powered products and interactive web experiences.
-
-[![Portfolio](https://img.shields.io/badge/🌍_Portfolio-Live-0a0a0a?style=flat-square)](https://jk-3d-portfolio.deploylane.online/)
-[![GitHub](https://img.shields.io/badge/GitHub-Jatinnn--ui-181717?style=flat-square&logo=github)](https://github.com/Jatinnn-ui)
-
----
-
-<div align="center">
-
-**Made with 💙 and Three.js — no frameworks harmed in the making of this portfolio.**
-
-⭐ *If you liked this, drop a star!* ⭐
-
-</div>
+Recommended next steps: fill verified links, review the biography and experimental claims, test on representative physical iOS / Android devices and integrated-GPU laptops, then publish. Use the Publish tab for ordinary publishing or explicitly request Hosted Deploy. Changes in the editor are not an already-published production site.
